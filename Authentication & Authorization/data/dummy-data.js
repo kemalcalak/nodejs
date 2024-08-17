@@ -11,8 +11,7 @@ async function populate() {
     if(count == 0) { 
 
         const users = await User.bulkCreate([
-            {fullname: "sadık turan", email: "info@sadikturan.com", password: await bcrypt.hash("135790", 10)},
-            {fullname: "çınar turan", email: "info@cinarturan.com", password: await bcrypt.hash("135790", 10)},
+            {fullname: "kemal calak", email: "info@kemalcalak.com", password: await bcrypt.hash("135790", 10)},
             {fullname: "ada bilgi", email: "info@adabilgi.com", password: await bcrypt.hash("135790", 10)},
             {fullname: "yiğit bilgi", email: "info@yigitbilgi.com", password: await bcrypt.hash("135790", 10)},
             {fullname: "ahmet yılmaz", email: "info@agmetyilmaz.com", password: await bcrypt.hash("135790", 10)},
@@ -24,13 +23,11 @@ async function populate() {
             {rolename: "guest"},
         ]);
 
-        await users[0].addRole(roles[0]);   // admin => sadikturan
+        await users[0].addRole(roles[0]);   // admin => kemalcalak
+        await users[1].addRole(roles[1]);   // moderator => adabilgi
         
-        await users[1].addRole(roles[1]);   // moderator => cinarturan
-        await users[2].addRole(roles[1]);   // moderator => adabilgi
-
-        await users[3].addRole(roles[2]);   // guest => yigitbilgi
-        await users[4].addRole(roles[2]);   // guest => ahmetyilmaz
+        await users[2].addRole(roles[2]);   // guest => yigitbilgi
+        await users[3].addRole(roles[2]);   // guest => agmetyilmaz
 
         const categories = await Category.bulkCreate([
             { name: "Web Geliştirme",url: slugField("Web Geliştirme"), },
